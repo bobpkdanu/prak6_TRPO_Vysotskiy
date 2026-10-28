@@ -1,0 +1,123 @@
+<Window x:Class="prak6_Vysotskiy.MainWindow"
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ Title="Управление сервером" Height="840" Width="1080" MinHeight="650" MinWidth="900"
+ Background="{DynamicResource WindowBackground}" WindowStartupLocation="CenterScreen">
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Margin="0,0,0,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Text="Панель управления сервером" Style="{DynamicResource MainTitle}"/>
+                <TextBlock Text="Мониторинг состояния и управление службами" Foreground="{DynamicResource TuskliText}" Margin="0,5,0,0"/>
+            </StackPanel>
+            <Button Grid.Column="1" Content="Сменить тему" Style="{StaticResource SecondaryButton}" 
+                    Click="ChangeTheme_Click" VerticalAlignment="Center"/>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.15*"/>
+                <ColumnDefinition Width="0.85*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <Border Style="{StaticResource BorderStyle}" Height="365">
+                    <StackPanel>
+                        <TextBlock Text="Состояние сервера" Style="{DynamicResource TitleText}" />
+                        <TextBlock Text="Остановлен" Foreground="{DynamicResource DangerColor}"/>
+                        <TextBlock Text="Имя сервера" Foreground="{DynamicResource TuskliText}" Margin="0,18,0,0"/>
+                        <TextBox Text="KRGZ-01"/>
+                        <TextBlock Text="Режим работы" Foreground="{DynamicResource TuskliText}"/>
+                        <ComboBox SelectedIndex="0"
+                                  Foreground="{DynamicResource TextColor}"
+                                  Background="{DynamicResource InputBackground}">
+                            <ComboBoxItem Content="Обычный режим"/>
+                            <ComboBoxItem Content="Высокая производительность"/>
+                            <ComboBoxItem Content="Обслуживание"/>
+                        </ComboBox>
+                        <TextBlock Text="Примечание" Foreground="{DynamicResource TuskliText}"/>
+                        <TextBox Height="70" AcceptsReturn="True" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto" Text="Помогите"/>
+                        <WrapPanel Margin="0,4,0,0">
+                            <Button Content="Запустить сервер" Style="{StaticResource LaunchButton}" />
+                            <Button Content="Остановить" Style="{StaticResource DangerButton}" IsEnabled="False"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" Margin="0,0,14,0" Height="170">
+                    <StackPanel>
+                        <TextBlock Text="Доступные действия" Style="{DynamicResource TitleText}" Margin="0,0,0,8"/>
+                        <CheckBox Content="Включить автоматический мониторинг" IsChecked="True"/>
+                        <CheckBox Content="Записывать события в журнал" IsChecked="True"/>
+                        <TextBlock Text="Приоритет обработки" Foreground="{DynamicResource TuskliText}" Margin="0,12,0,0"/>
+                        <StackPanel Orientation="Horizontal">
+                            <RadioButton Content="Обычный" GroupName="Priority" IsChecked="True"/>
+                            <RadioButton Content="Высокий" GroupName="Priority" Margin="18,4,0,4"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <Border Style="{StaticResource BorderStyle}" Margin="0,0,0,14" Height="365">
+                    <StackPanel>
+                        <TextBlock Text="Мониторинг нагрузки" Style="{DynamicResource TitleText}" Margin="0,0,0,15"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Процессор (CPU)"/>
+                            <TextBlock Grid.Column="1" Text="14%" />
+                        </Grid>
+                        <ProgressBar Value="14" Maximum="100"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Оперативная память (RAM)"/>
+                            <TextBlock Grid.Column="1" Text="88%"/>
+                        </Grid>
+                        <ProgressBar Value="88" Maximum="100"/>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="Дисковое пространство"/>
+                            <TextBlock Grid.Column="1" Text="67%"/>
+                        </Grid>
+                        <ProgressBar Value="67" Maximum="100"/>
+                        <TextBlock Text="Нагрузка в норме" Foreground="{DynamicResource SuccessColor}" 
+                                   Margin="0,6,0,0"/>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource BorderStyle}" Margin="0,0,0,14" Height="170">
+                    <StackPanel>
+                        <TextBlock Text="Службы сервера" Style="{DynamicResource TitleText}" Margin="0,0,0,10"/>
+                        <DockPanel Margin="0,5">
+                            <TextBlock Text="Веб-сервер"/>
+                            <TextBlock Text=" Остановлен" Foreground="{DynamicResource DangerColor}"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,5">
+                            <TextBlock Text="База данных"/>
+                            <TextBlock Text=" Остановлена" Foreground="{DynamicResource DangerColor}"/>
+                        </DockPanel>
+                        <DockPanel Margin="0,5">
+                            <TextBlock Text="Система журналов"/>
+                            <TextBlock Text=" Ожидание" Foreground="{DynamicResource WarningColor}"/>
+                        </DockPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+        </Grid>
+        <TextBlock Grid.Row="2" Text="Эщкере" Foreground="{DynamicResource TuskliText}" 
+                   HorizontalAlignment="Right" Margin="0,14,0,0"/>
+    </Grid>
+</Window>
